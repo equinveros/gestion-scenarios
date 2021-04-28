@@ -1,0 +1,1684 @@
+/* ----------------------------------------
+   Grid
+   ---------------------------------------- */
+/* == Général ========== */
+/* -- Lignes ----- */
+/* Contient les fottants */
+.tg-cont {
+    /* overflow: hidden; */
+    /* TODO Revoir ce fonctionnement, peut poser problème */
+}
+
+/* .tg-cont.tg-show-grid > [class*="tg-grid"] {
+    border: 1px solid #ddd;
+} */
+
+/* -- Colonnes ----- */
+[class*="tg-grid"] {
+    float: left;
+    margin: 0;
+    min-height: 1px;
+    padding-left: 2%;
+}
+
+/* Remove padding for `tg-cont-collapse` container */
+.tg-cont-collapse > [class*="tg-grid"] {
+    padding-left: 0;
+}
+
+/* La première colonne d'une ligne ne doit pas avoir de marge interne gauche */
+[class*="tg-grid"]:first-child,
+.tg-grid-end + [class*="tg-grid"] {
+    padding-left: 0;
+}
+
+.tg-grid-end {
+    float: right;
+    padding-left: 2% !important; /* On annule le padding-left nul sur la première colonne, vu qu'elle ne l'est plus */
+}
+
+.tg-grid-centered {
+    float: none;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+/* == Colonnes égales ========== */
+/* stylelint-disable */
+.tg-cont-1  > .tg-grid { width: 100%       }
+.tg-cont-2  > .tg-grid { width:  50%       }
+.tg-cont-3  > .tg-grid { width:  33.33333% }
+.tg-cont-4  > .tg-grid { width:  25%       }
+.tg-cont-5  > .tg-grid { width:  20%       }
+.tg-cont-6  > .tg-grid { width:  16.66667% }
+.tg-cont-7  > .tg-grid { width:  14.28571% }
+.tg-cont-8  > .tg-grid { width:  12.5%     }
+.tg-cont-9  > .tg-grid { width:  11.11111% }
+.tg-cont-10 > .tg-grid { width:  10%       }
+.tg-cont-11 > .tg-grid { width:   9.09091% }
+.tg-cont-12 > .tg-grid { width:   8.33333% }
+/* TODO Revoir si ce fonctionnement est réellement nécessaire - vérifier si utilisé dans des modules */
+
+/* == Colonnes inégales ========== */
+.tg-grid-1  { width:   8.33333% }
+.tg-grid-2  { width:  16.66667% }
+.tg-grid-3  { width:  25%       }
+.tg-grid-4  { width:  33.33333% }
+.tg-grid-5  { width:  41.66667% }
+.tg-grid-6  { width:  50%       }
+.tg-grid-7  { width:  58.33333% }
+.tg-grid-8  { width:  66.66667% }
+.tg-grid-9  { width:  75%       }
+.tg-grid-10 { width:  83.33333% }
+.tg-grid-11 { width:  91.66667% }
+.tg-grid-12 { width: 100%       }
+/* stylelint-enable */
+
+/* --------------------------------------------------------------------------------
+   Media queries
+
+   @note intermediate : 1199px - 74.9375em - 1200px 75em
+   @note medium breakpoint : 899px - 56.1875em - 900px 56.25em
+   @note small breakpoint : 599px - 37.4375em - 600px 37.5em
+   -------------------------------------------------------------------------------- */
+
+/* -- Intermediate screens ----- */
+/* @media screen and (max-width: 99.9166667em) {} */
+
+/* -- Medium screens ----- */
+/* @media screen and (max-width: 56.1875em) {} */
+
+/* -- Small ----- */
+@media screen and (max-width: 37.4375em) {
+    [class*="tg-grid"] {
+        float: none;
+        padding-left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+/* --------------------------------------------------------------------------------
+   Clearings
+   -------------------------------------------------------------------------------- */
+.tg-clear,
+.tg-clear:after,
+.tg-clear-before,
+.tg-clear-after:after,
+[class*="tg-cont"]:after,
+[class*="tg-cont"],
+.tg-toolbar,
+.tg-toolbar:after,
+.tg-form-btn,
+.tg-form-btn:after,
+.tg-form-element,
+.tg-form-element:before,
+.tg-form-element:after {
+    clear: both;
+}
+
+span.tg-clear { display: block; }
+
+.tg-clear:before,
+.tg-clear:after,
+[class*="tg-cont"]:before,
+[class*="tg-cont"]:after,
+.tg-clear-before:before,
+.tg-clear-after:after,
+.tg-form-btn:before,
+.tg-form-btn:after,
+.tg-toolbar:before,
+.tg-toolbar:after,
+.tg-form-element:before,
+.tg-form-element:after {
+    content: "";
+    display: table;
+}
+
+
+
+/* --------------------------------------------------------------------------------
+   Utilities
+   -------------------------------------------------------------------------------- */
+
+/* == Accessibility ==================== */
+
+/**
+ * Bulletproof way to hide content in an accessible way
+ *
+ * @author Gaël Poupard
+ * @see https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
+ */
+.tg-visually-hidden {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
+}
+
+/* == Resets ==================== */
+table.tg-none,
+table.tg-none tr,
+table.tg-none th,
+table.tg-none td,
+button.tg-none,
+input.tg-none {
+    border: 0;
+}
+
+button.tg-none {
+    background: none;
+    padding: 0;
+}
+
+/* == Alignements ==================== */
+/* -- Positionnement ----- */
+.tg-pos-left { float: left; }
+.tg-pos-right { float: right; }
+.tg-pos-front { z-index: 3; }
+
+/* -- Alignements verticaux ----- */
+.tg-v-align-top { vertical-align: top; }
+.tg-v-align-middle { vertical-align: middle; }
+.tg-v-align-baseline { vertical-align: baseline; }
+.tg-v-align-bottom { vertical-align: bottom; }
+
+/* == Actions ==================== */
+.tg-clickable {
+    cursor: pointer;
+}
+
+.tg-cursor-zoom-in {
+    cursor: zoom-in;
+}
+
+/* -- Texte ----- */
+/* Couleur */
+.tg-important { color: #db0000; }
+
+/* Alignement */
+.tg-text-left { text-align: left; }
+.tg-text-right { text-align: right; }
+
+.tg-pos-center,
+.tg-text-center { text-align: center; }
+.tg-text-justify { text-align: justify; }
+
+.tg-text-bold { font-weight: 700; }
+
+.tg-big {
+    font-size: 1.2em;
+}
+
+.tg-small {
+    font-size: .8em;
+}
+
+.tg-nowrap {
+    white-space: nowrap;
+}
+
+/* -- Dimensions ----- */
+.tg-fixed-100 {
+    width: 100px;
+}
+
+/* -- Listes ----- */
+.tg-inline-list {
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+}
+
+.tg-inline-list > li {
+    float: left;
+    margin-left: 1em;
+}
+
+.tg-inline-list.left > li:first-child {
+    margin-left: 0;
+}
+
+ul.tg-none,
+.tg-list-reset {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.tg-none > li {
+    padding-left: 0;
+}
+
+/* -- Tableaux ----- */
+td.tg-min { width: 1px; }
+
+td.tg-min > label {
+    margin-right: .625em; /* 10px */
+    white-space: nowrap;
+}
+
+/* == Format de block ==================== */
+.tg-inline { display: inline; }
+.tg-block { display: block; }
+.tg-inline-block { display: inline-block; }
+
+/* == Hide things for IE8, basically things hidden by min-width media queries that are not supported by IE8 ==================== */
+.ie8 .tg-hidden-for-ie8 {
+    display: none !important;
+}
+
+
+/* Repsonsive utility classes
+   -------------------------------------------------------------------------------- */
+
+/* -- Medium ----- */
+@media screen and (min-width: 56.25em) {
+    .tg-show-for-medium-down {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 56.1875em) {
+    .tg-hide-for-medium-down {
+        display: none !important;
+    }
+}
+
+/* -- Small ----- */
+@media screen and (min-width: 37.5em) {
+    .tg-show-for-small-only {
+        display: none !important;
+    }
+}
+
+
+
+/* --------------------------------------------------------------------------------
+   Structure
+   -------------------------------------------------------------------------------- */
+
+.tg-Container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+    width: 90%;
+}
+
+.tg-bloc,
+.tg-wrapper {
+    margin-bottom: 1em;
+}
+
+/* Hide empty blocs */
+.tg-bloc.tg-empty {
+    display: none;
+}
+
+.tg-wrapper,
+.tg-cols {
+    position: relative;
+}
+
+/* -- Loader ----- */
+.tg-Loader {
+    background: rgba(0, 0, 0, .75);
+    bottom: 0;
+    display: table;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1005;
+}
+
+.tg-Loader-inner {
+    display: table-cell;
+    text-align: center; /* Centers box and images */
+    vertical-align: middle;
+}
+
+.tg-Loader-box {
+    background: #fff;
+    padding: 1em;
+    margin: 0 auto; /* HZ center items */
+    max-width: 18.75em; /* 300px */
+    width: 90%;
+}
+
+
+
+/* --------------------------------------------------------------------------------
+   Navigations
+
+   - Base Menu
+   - Mega Menu
+   -------------------------------------------------------------------------------- */
+/**
+ * Noskin
+ */
+.tg-BaseMenu img { vertical-align: middle; }
+
+.tg-level-0 > li,
+.tg-MegaMenu-topItem {
+    border: 1px solid #aaa;
+}
+
+.tg-BaseMenu-list ul {
+    background-color: #fff;
+    border: 1px solid #aaa;
+}
+
+.tg-MegaMenu-topAction {
+    border: 0;
+    color: #06c;
+    margin: 0;
+}
+
+.tg-MegaMenu-panel {
+    background-color: #fff;
+
+    /* TODO 100% */
+    width: 600px;
+}
+
+.tg-BaseMenu-list[aria-hidden="true"],
+.tg-MegaMenu--burger .tg-MegaMenu-topList[aria-hidden='true'],
+.tg-js-MegaMenu-panel[aria-expanded="false"] { display: none; }
+.tg-js-MegaMenu-panel[aria-expanded="true"] { display: block; }
+
+/* When the Mega Menu panel appears and shifts content */
+.tg-js-MegaMenu-panel--shiftContent {
+    position: static;
+}
+
+
+/**
+ * Reset styles of menu lists
+ */
+.tg-BaseMenu-list,
+.tg-MegaMenu-topList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Set all sublevel lists to absolute positionning
+ */
+.tg-BaseMenu-list .tg-BaseMenu-list,
+.tg-MegaMenu-panel {
+    min-width: 10em; /* left offset of submenus need to match (see below) */
+    position: absolute;
+}
+
+/**
+ * Float <li> elements to have horizontal bar & set them relative for sublevel's positionning
+ */
+.tg-BaseMenu-item,
+.tg-MegaMenu-topItem {
+    float: left;
+    line-height: 25px;
+    padding: 0 10px;
+}
+
+.tg-BaseMenu-item,
+.tg-MegaMenu {
+    position: relative;
+}
+
+/**
+ * Do not float sublevel items
+ */
+.tg-BaseMenu-list.tg-level-1 .tg-BaseMenu-item {
+    float: none;
+}
+
+/**
+ * So you can add padding to it
+ */
+.tg-BaseMenu-link {
+    display: block;
+}
+
+/**
+ * Position of the hidden sublevels
+ * 1. Really hide sublevels in order to not make them appear when hovering the area under the navbar
+ * 1. Needed for the transitional appearing effect
+ */
+.tg-BaseMenu-item.tg-has-children > .tg-BaseMenu-list,
+.tg-MegaMenu-panel {
+    left: -9999px; /* 1 */
+    opacity: 0; /* 2 */
+    transition: opacity .5s ease;
+}
+
+/* -- First level ----- */
+.tg-BaseMenu-item.tg-has-children > .tg-BaseMenu-list-opened, /* JS */
+.tg-BaseMenu-item.tg-has-children > .tg-BaseMenu-list[aria-hidden='false'], /* JS */
+.tg-MegaMenu-panel[aria-expanded="true"], /* JS */
+/* IE8 does not understand @media rules, without these two lines, sublevels could never be opened */
+.ie8 .tg-BaseMenu-item.tg-has-children:hover > .tg-BaseMenu-list,
+.ie8 .tg-MegaMenu--openOnHover .tg-MegaMenu-topItem:hover > .tg-MegaMenu-panel {
+    display: block;
+    left: 0; /* 1 */
+    opacity: 1; /* 2 */
+    z-index: 99;
+}
+
+@media screen and (min-width: 56.25em) { /* 900px */
+    .tg-BaseMenu-item.tg-has-children:hover > .tg-BaseMenu-list,
+    .tg-MegaMenu--openOnHover .tg-MegaMenu-topItem:hover > .tg-MegaMenu-panel {
+        display: block;
+        left: 0; /* 1 */
+        opacity: 1; /* 2 */
+        z-index: 99;
+    }
+}
+
+/* -- Sublevels ----- */
+.tg-BaseMenu-item.tg-has-children > .tg-BaseMenu-list-opened.tg-BaseMenu-list.tg-level-2, /* JS */
+.tg-BaseMenu-item.tg-has-children > .tg-BaseMenu-list[aria-hidden='false'].tg-BaseMenu-list.tg-level-2, /* JS */
+.tg-BaseMenu-item.tg-has-children:hover > .tg-BaseMenu-list.tg-level-2 {
+    left: 100%;
+    top: 0;
+}
+
+/* Sublevel toggle */
+.tg-BaseMenu-toggleSubLevel {
+    display: inline-block;
+}
+
+.tg-BaseMenu-toggleSubLevel:after {
+    content: '⌵';
+    display: inline-block;
+    speak: none;
+    transform-origin: 50% 55%;
+}
+
+.tg-BaseMenu-toggleSubLevel.tg-is-active:after {
+    transform: rotate(.5turn);
+}
+
+
+/**
+ * Sublevel indicator
+ */
+/* -- First level ----- */
+.tg-BaseMenu-item.tg-has-children > .tg-BaseMenu-link:after,
+.tg-MegaMenu-topAction:after {
+    border: inset 4px;
+    border-color: currentColor transparent transparent;
+    border-top-style: solid;
+    content: '';
+    display: inline-block;
+    height: 0;
+    margin-left: .5em;
+    position: relative;
+    top: .2em;
+    width: 0;
+}
+
+/* -- Sublevels ----- */
+.tg-BaseMenu-list.tg-level-1 .tg-BaseMenu-item.tg-has-children > .tg-BaseMenu-link:after {
+    border-color: transparent transparent transparent currentColor;
+    top: 0;
+}
+
+
+/* Responsive
+   -------------------------------------------------------------------------------- */
+
+/* -- Medium screens ----- */
+
+/* Up */
+@media screen and (min-width: 56.25em) { /* 900px */
+    .tg-BaseMenu-toggleSubLevel {
+        display: none;
+    }
+}
+
+
+/* Down */
+@media screen and (max-width: 56.1875em) { /* 899px */
+
+    /**
+     * Shared
+     */
+
+    .tg-BaseMenu-item.tg-has-children > .tg-BaseMenu-link:after {
+        display: none;
+    }
+
+    /**
+     * Horizontal scroll navigation
+     */
+
+    .tg-BaseMenu--scroll,
+    .tg-MegaMenu--scroll {
+        overflow-x: scroll;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        white-space: nowrap;
+    }
+
+    /* Hide whitespaces caused by `display: inline-block` */
+    .tg-BaseMenu--scroll .tg-level-0 > .tg-BaseMenu-item + .tg-BaseMenu-item {
+        margin-left: -4px;
+    }
+
+    .tg-BaseMenu--scroll .tg-level-0 > .tg-BaseMenu-item {
+        display: inline-block;
+        float: none;
+    }
+
+
+
+    /**
+     * Burger navigation
+     */
+
+    .tg-BaseMenu--burger .tg-BaseMenu-item,
+    .tg-MegaMenu--burger .tg-MegaMenu-topItem {
+        float: none;
+    }
+
+    .tg-BaseMenu--burger .tg-has-children > .tg-BaseMenu-list[aria-hidden='false'] {
+        position: initial; /* Override `position: absolute` on small screens */
+    }
+
+    /* Sublevel toggle */
+    .tg-BaseMenu--burger .tg-has-children > .tg-BaseMenu-link {
+        display: inline-block;
+    }
+}
+
+
+/* --------------------------------------------------------------------------------
+   Formulaires
+   -------------------------------------------------------------------------------- */
+/* == Général ==================== */
+
+.tg-form-btn > .tg-button,
+.tg-form-btn > div {
+    display: inline-block;
+    margin-left: .5em;
+}
+
+.tg-form-element {
+    margin-top: .4em;
+    position: relative;
+}
+.tg-form-element:first-of-type { margin-top: 0; }
+
+.tg-form-element > label,
+.tg-form-element > .tg-form-control {
+    float: left;
+
+    /* TODO display: inline-block & vertical-align: middle
+        Attention aux checkboxes/radios, treeview, choix multiples, textarea, ...
+        Risque de poser problème pour le tg-form-reverse
+    */
+}
+
+.tg-form-element > label,
+.tg-form-control-checkbox,
+.tg-form-control-radio {
+    padding-top: .3em;
+}
+
+.tg-form-element > label {
+    text-align: right;
+    padding-right: 2%;
+    width: 34%;
+}
+
+.tg-form-element > .tg-form-control {
+    width: 66%;
+}
+
+/* Override default td padding
+   TODO Remove tables from layout
+ */
+.tg-form-control td {
+    padding: 0;
+}
+
+/* Listes dans les form-element */
+.tg-form-element ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+/* Mandatory icon */
+.tg-form-element .tg-icon-mandatory {
+    display: none;
+}
+
+.tg-form-mandatory .tg-icon-mandatory {
+    display: inline-block;
+    margin-left: .5em;
+}
+
+
+/* -- Bordures ----- */
+textarea,
+select,
+.tg-input {
+    border: 1px solid #ccc;
+}
+
+
+/* == Cas particuliers ==================== */
+/* -- Champs reverse ----- */
+.tg-form-reverse > label {
+    padding-right: 0;
+    text-align: left;
+}
+
+.tg-form-reverse > .tg-form-control {
+    padding-right: 2%;
+    width: 32%;
+}
+
+.tg-form-reverse > label {
+    width: 66%;
+}
+
+/* Checkbox et radio */
+.tg-form-reverse .tg-form-control-checkbox,
+.tg-form-reverse .tg-form-control-radio {
+    text-align: right;
+}
+
+.tg-form-reverse .tg-form-control-checkbox,
+.tg-form-reverse .tg-form-control-checkbox ~ label {
+    width: auto;
+}
+
+.tg-form-reverse .tg-form-control-checkbox ~ label {
+    float: none;
+}
+
+/* -- Champs 100% ----- */
+.tg-form-full > label {
+    padding-right: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.tg-form-full > .tg-form-control,
+.tg-form-full > .tg-form-comment {
+    width: 100%;
+}
+
+/* -- Champs commentés ----- */
+.tg-form-commented > .tg-form-control {
+    padding-right: 2%;
+    width: 32%;
+}
+
+/* -- Champs choix multiples ----- */
+/* Alignés */
+.tg-form-control.tg-align li {
+    float: left;
+    margin-right: .5em;
+}
+
+/* -- Champs fichier ----- */
+.tg-form-control .tg-floating-parent {
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.tg-form-control .tg-floating-parent > .tg-inner {
+    float: right;
+}
+
+.tg-form-control .tg-hidden-floating[type="file"] {
+    background: none repeat scroll 0 0 transparent;
+    border: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+
+/* -- Faux input contenant un champs ----- */
+.tg-input > table {
+    margin: 0;
+}
+
+
+/* -- Colorpicker ----- */
+/* Aperçu */
+.tg-form-color-display {
+    display: block;
+    float: left;
+    height: 1.25em; /* 20px */
+    margin: .125em .375em .125em 0; /* 2px 6px 2px 0 */
+    width: 1.5625em; /* 25px */
+}
+
+
+/* -- Helpers ----- */
+/* Saisie de valeurs */
+.tg-input.tg-fixed { width: 5em; } /* 80px */
+
+/* -- Combotree ----- */
+.tg-form-control-combotree-divtree {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    overflow-y: scroll;
+	max-height: 300px;
+    padding: .5em;
+    position: absolute;
+    z-index: 1003;
+}
+
+.tg-form-control-combotree ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 37.4375em) {
+    .tg-form-control-combotree-divtree {
+        left: 5vw !important; /* Important is needed to override inline styles set in JS */
+        max-width: 100vw;
+        right: 5vw;
+    }
+
+    .tg-form-control-combotree-divtree .jstree li {
+        line-height: 1.5; /* Increase visual delimitation between labels */
+    }
+
+    .tg-form-control-combotree-divtree .jstree a {
+        max-width: 90%;
+        white-space: normal; /* Enable text to be on multiple lines when needed */
+    }
+}
+
+/* -- Sortable ----- */
+.tg-form-control-sortable .tg-input {
+    overflow-y: scroll;
+}
+
+/* -- Inline editor ----- */
+.tg-form-control-inlineeditor-inner > div {
+    border: 1px solid #ccc;
+    min-height: 80px;
+    padding: .5em;
+}
+
+/* -- Numeric form control ----- */
+.tg-form-control-slider .tg-input {
+    text-align: right;
+}
+
+
+/* == Personnalisation des boutons radio et checkbox ==================== */
+/* Container permettant de contenir les absolus */
+[aria-multiselectable="false"] .jstree-anchor:before,
+.tg-custom-radio,
+.tg-custom-checkbox {
+    display: inline-block;
+    line-height: 1;
+    margin-right: .375em;
+    position: relative;
+}
+
+/* Alignement avec le reste des tg-form-controls */
+.tg-form-control-radio label,
+.tg-form-control-checkbox label {
+    text-align: left;
+    width: auto;
+}
+
+.tg-form-control-radio ul,
+.tg-form-control-checkbox ul { padding-left: 0; }
+
+
+/* On masque les inputs de manière à ce qu'ils soient focusables */
+.tg-custom-radio [type="radio"]:checked,
+.tg-custom-radio [type="radio"]:not(:checked),
+.tg-custom-checkbox [type="checkbox"]:checked,
+.tg-custom-checkbox [type="checkbox"]:not(:checked) {
+    height: 100%;
+    left: 0;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+[aria-multiselectable="false"] .jstree-anchor:before {
+    content: "";
+}
+
+/* Styles communs aux checkbox et radios de remplacement */
+[aria-multiselectable="false"] .jstree-anchor:before,
+.tg-custom-radio [type="radio"]:checked + span,
+.tg-custom-radio [type="radio"]:not(:checked) + span,
+.tg-custom-checkbox [type="checkbox"]:checked + span,
+.tg-custom-checkbox [type="checkbox"]:not(:checked) + span {
+    border: 1px solid #d1d0cf;
+    display: inline-block;
+    height: .75em; /* 12px */
+    width: .75em; /* 12px */
+}
+
+/* Boutons individuels */
+[aria-multiselectable="false"] .jstree-anchor:before,
+.tg-custom-radio [type="radio"]:checked + span,
+.tg-custom-radio [type="radio"]:not(:checked) + span {
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 16px #fff;
+    transition: .25s ease;
+}
+
+/* Treeview + checkbox */
+.jstree-classic .jstree-checkbox,
+.tg-custom-checkbox [type="checkbox"]:checked + span,
+.tg-custom-checkbox [type="checkbox"]:not(:checked) + span {
+    background: #fff;
+    background-image: linear-gradient(#fff, #c9c9c9);
+    background-position: 0 0 !important;
+    background-size: auto 175%;
+    border: 1px solid #b8b8b8;
+    box-shadow: inset 0 0 0 1px #fff;
+}
+
+/* Styles éléments checkés */
+[aria-multiselectable="false"] .jstree-anchor.jstree-clicked:before,
+.tg-custom-radio [type="radio"]:checked + span { box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 100px #999; }
+
+.jstree-classic .jstree-checked > a > .jstree-checkbox,
+.tg-custom-checkbox [type="checkbox"]:checked + span {
+    background: url("../Img/checked.png") no-repeat 50% 50% !important;
+    box-shadow: none;
+}
+
+/* Gestion de la prise de focus */
+.tg-custom-radio [type="radio"]:checked:focus + span,
+.tg-custom-radio [type="radio"]:not(:checked):focus + span,
+.tg-custom-checkbox [type="checkbox"]:checked:focus + span,
+.tg-custom-checkbox [type="checkbox"]:not(:checked):focus + span { border-color: #999; }
+
+/* Gestion des éléments désactivés [disabled] */
+[class*="tg-custom-"] [disabled] + span {
+    opacity: .5;
+}
+
+/* Gestion des cas d'erreur sur les checkbox */
+.tg-state-error > .tg-form-control-checkbox {
+    padding: 0 1%;
+}
+
+
+
+/**
+ * Datalist
+ */
+
+.tg-form-control-datalist input {
+    font: inherit;
+    width: 100%;
+}
+
+.tg-form-control-datalist-list .tg-active {
+    font-weight: 700;
+}
+
+
+/* Responsive
+   -------------------------------------------------------------------------------- */
+
+/* -- Medium screens ----- */
+@media screen and (max-width: 56.1875em) {
+    .tg-form-element {
+        margin-bottom: 1em;
+    }
+}
+
+/* -- Small ----- */
+@media screen and (max-width: 37.4375em) {
+    .tg-form-element > label,
+    .tg-form-element > .tg-form-control {
+        display: block;
+        float: none;
+        text-align: left;
+        width: 100%;
+    }
+
+    .tg-form-element > label {
+        padding: 0;
+    }
+}
+
+
+/* --------------------------------------------------------------------------------
+   States
+   -------------------------------------------------------------------------------- */
+/* == Blocks ==================== */
+/* Général */
+.tg-bloc-success,
+.tg-bloc-error {
+    border: 1px solid;
+    padding: .5em;
+}
+
+.tg-bloc-success h3,
+.tg-bloc-error h3,
+.tg-bloc-success ul,
+.tg-bloc-error ul {
+    margin: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.tg-bloc-success {
+    background-color: #d1eabb;
+    border-color: #8bc954;
+    color: #598b2c;
+}
+
+.tg-bloc-error {
+    background-color: #fcc;
+    border-color: #f99;
+    color: #de5959;
+}
+
+
+/* == States ----- */
+.tg-state-error .tg-form-control-inlineeditor-inner,
+.tg-state-error .tg-input,
+.tg-state-error textarea,
+.tg-state-error select {
+    border-color: #f00;
+}
+
+
+
+/* --------------------------------------------------------------------------------
+   Icônes
+   -------------------------------------------------------------------------------- */
+
+/* -- Listes d'icônes horizontales ----- */
+.tg-icon-set {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.tg-icon-set > li {
+    border: 1px solid #ccc;
+    float: left;
+    line-height: 1;
+    padding: .5em;
+}
+
+.tg-icon-set > li:not(:first-child) {
+    border-left-color: transparent;
+}
+
+.tg-icon-set .tg-icon {
+    margin: 0;
+}
+
+/* -- Icônes Taïga ----- */
+.tg-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 24px;
+    line-height: 16px;
+    margin: 2px;
+    text-align: center;
+    vertical-align: middle;
+    width: 24px;
+}
+
+.tg-icon.tg-big {
+    height: 32px;
+    width: 32px;
+}
+
+.tg-icon.tg-small {
+    font-size: 1em;
+    height: 16px;
+    width: 16px;
+}
+
+/* stylelint-disable */
+.tg-icon.tg-big.tg-icon-cartadd         { background-image: url("../Img/icons/cartadd-32.png") }
+.tg-icon.tg-big.tg-icon-cartremove      { background-image: url("../Img/icons/cartremove-32.png") }
+.tg-icon.tg-big.tg-icon-colonnes        { background-image: url("../Img/icons/colonnes-32.png") }
+.tg-icon.tg-big.tg-icon-filter          { background-image: url("../Img/icons/filter-32.png") }
+.tg-icon.tg-big.tg-icon-filter-add      { background-image: url("../Img/icons/filter-add-32.png") }
+.tg-icon.tg-big.tg-icon-filter-delete   { background-image: url("../Img/icons/filter-delete-32.png") }
+.tg-icon.tg-big.tg-icon-loupe           { background-image: url("../Img/icons/loupe-32.png") }
+.tg-icon.tg-big.tg-icon-share           { background-image: url("../Img/icons/share-32.png") }
+.tg-icon.tg-big.tg-icon-unshare         { background-image: url("../Img/icons/unshare-32.png")}
+.tg-icon.tg-big.tg-icon-subscribe       { background-image: url("../Img/icons/user-subscribe-32-v2.png") }
+.tg-icon.tg-big.tg-icon-unsubscribe     { background-image: url("../Img/icons/user-unsubscribe-32-v2.png") }
+.tg-icon.tg-big.tg-icon-world           { background-image: url("../Img/icons/planet-32.png") }
+.tg-icon.tg-big.tg-icon-worldcomputer   { background-image: url("../Img/icons/planetcomputer-32.png") }
+.tg-icon.tg-big.tg-picture              { background-image: url("../Img/icons/picture-32.png") }
+
+.tg-icon.tg-small.tg-icon-404           { background-image: url("../Img/icons/404-16.png") }
+.tg-icon.tg-small.tg-icon-add           { background-image: url("../Img/icons/plus-16.png") }
+.tg-icon.tg-small.tg-icon-alert         { background-image: url("../Img/icons/alert-16.png") }
+.tg-icon.tg-small.tg-icon-calendar      { background-image: url("../Img/icons/calendar-16.png") }
+.tg-icon.tg-small.tg-icon-cancel        { background-image: url("../Img/icons/cancel-16.png") }
+.tg-icon.tg-small.tg-icon-cart          { background-image: url("../Img/icons/cart-16.png") }
+.tg-icon.tg-small.tg-icon-checked       { background-image: url("../Img/icons/checked-16.png") }
+.tg-icon.tg-small.tg-icon-checklist     { background-image: url("../Img/icons/checklist-16.png") }
+.tg-icon.tg-small.tg-icon-colonnes      { background-image: url("../Img/icons/colonnes-16.png") }
+.tg-icon.tg-small.tg-icon-combo         { background-image: url("../Img/icons/combo-16.png") }
+.tg-icon.tg-small.tg-icon-copy          { background-image: url("../Img/icons/copy-16.png") }
+.tg-icon.tg-small.tg-icon-crop          { background-image: url("../Img/icons/crop-16.png") }
+.tg-icon.tg-small.tg-icon-cursor        { background-image: url("../Img/icons/cursor-16.gif") }
+.tg-icon.tg-small.tg-icon-database      { background-image: url("../Img/icons/database-16.png") }
+.tg-icon.tg-small.tg-icon-delete        { background-image: url("../Img/icons/delete-16.png") }
+.tg-icon.tg-small.tg-icon-document      { background-image: url("../Img/icons/doc-16.png") }
+.tg-icon.tg-small.tg-icon-drivedisk     { background-image: url("../Img/icons/drivedisk-16.png") }
+.tg-icon.tg-small.tg-icon-down          { background-image: url("../Img/icons/down-16.png") }
+.tg-icon.tg-small.tg-icon-edit          { background-image: url("../Img/icons/edit-16.png") }
+.tg-icon.tg-small.tg-icon-export        { background-image: url("../Img/icons/excel-16.png") }
+.tg-icon.tg-small.tg-icon-false         { display: none }
+.tg-icon.tg-small.tg-icon-fields        { background-image: url("../Img/icons/fields-16.png") }
+.tg-icon.tg-small.tg-icon-filter        { background-image: url("../Img/icons/filter-16.png") }
+.tg-icon.tg-small.tg-icon-filter-add    { background-image: url("../Img/icons/filter-add-16.png") }
+.tg-icon.tg-small.tg-icon-filter-delete { background-image: url("../Img/icons/filter-delete-16.png") }
+.tg-icon.tg-small.tg-icon-first         { background-image: url("../Img/icons/first-16.png") }
+.tg-icon.tg-small.tg-icon-gear          { background-image: url("../Img/icons/gear-16.png") }
+.tg-icon.tg-small.tg-icon-goto          { background-image: url("../Img/icons/goto-16.png") }
+.tg-icon.tg-small.tg-icon-home          { background-image: url("../Img/icons/home-16.png") }
+.tg-icon.tg-small.tg-icon-import        { background-image: url("../Img/icons/import-16.gif") }
+.tg-icon.tg-small.tg-icon-info          { background-image: url("../Img/icons/info-16.png") }
+.tg-icon.tg-small.tg-icon-last          { background-image: url("../Img/icons/last-16.png") }
+.tg-icon.tg-small.tg-icon-left          { background-image: url("../Img/icons/left-16.png") }
+.tg-icon.tg-small.tg-icon-link          { background-image: url("../Img/icons/link-16.png") }
+.tg-icon.tg-small.tg-icon-list          { background-image: url("../Img/icons/list-16.png") }
+.tg-icon.tg-small.tg-icon-loader        { background-image: url("../Img/icons/loader-16.gif") }
+.tg-icon.tg-small.tg-icon-ajax-loader   { background-image: url("../Img/icons/ajax-loader-16.gif") }
+.tg-icon.tg-small.tg-icon-loupe         { background-image: url("../Img/icons/loupe-16.png") }
+.tg-icon.tg-small.tg-icon-message       { background-image: url("../Img/icons/message-16.png") }
+.tg-icon.tg-small.tg-icon-mobile        { background-image: url("../Img/icons/mobile-16.png") }
+.tg-icon.tg-small.tg-icon-money        	{ background-image: url("../Img/icons/money-16.png") }
+.tg-icon.tg-small.tg-icon-move          { background-image: url("../Img/icons/move-16.png"); cursor: move }
+.tg-icon.tg-small.tg-icon-next,
+.tg-icon.tg-big.tg-icon-next            { background-image: url("../Img/icons/next-16.png") }
+.tg-icon.tg-small.tg-icon-none          { background-image: url("../Img/icons/transparent-16.gif") }
+.tg-icon.tg-small.tg-icon-on            { background-image: url("../Img/icons/on-16.png") }
+.tg-icon.tg-small.tg-icon-off           { background-image: url("../Img/icons/off-16.png") }
+.tg-icon.tg-small.tg-icon-order         { background-image: url("../Img/icons/sort-16.png") }
+.tg-icon.tg-small.tg-icon-page          { background-image: url("../Img/icons/document-16.png") }
+.tg-icon.tg-small.tg-icon-pause         { background-image: url("../Img/icons/pause-16.png") }
+.tg-icon.tg-small.tg-icon-play          { background-image: url("../Img/icons/play-16.png") }
+.tg-icon.tg-small.tg-icon-prev,
+.tg-icon.tg-big.tg-icon-prev            { background-image: url("../Img/icons/prev-16.png") }
+.tg-icon.tg-small.tg-icon-prohibited    { background-image: url("../Img/icons/prohibited-16.png") }
+.tg-icon.tg-small.tg-icon-right         { background-image: url("../Img/icons/right-16.png") }
+.tg-icon.tg-small.tg-icon-refresh       { background-image: url("../Img/icons/refresh-16.png") }
+.tg-icon.tg-small.tg-icon-rotatecw      { background-image: url("../Img/icons/rotatecw-16.png") }
+.tg-icon.tg-small.tg-icon-rotateccw     { background-image: url("../Img/icons/rotateccw-16.png") }
+.tg-icon.tg-small.tg-icon-save          { background-image: url("../Img/icons/save-16.png") }
+.tg-icon.tg-small.tg-icon-schedule      { background-image: url("../Img/icons/schedule-16.png") }
+.tg-icon.tg-small.tg-icon-switch { background-image: url("../Img/icons/switch-16.png") }
+.tg-icon.tg-small.tg-icon-see           { background-image: url("../Img/icons/see-16.png") }
+.tg-icon.tg-small.tg-icon-share         { background-image: url("../Img/icons/share-16.png")}
+.tg-icon.tg-small.tg-icon-stats         { background-image: url("../Img/icons/stick-diagram-16.png")}
+.tg-icon.tg-small.tg-icon-unshare       { background-image: url("../Img/icons/unshare-16.png")}
+.tg-icon.tg-small.tg-icon-text          { background-image: url("../Img/icons/text-16.png") }
+.tg-icon.tg-small.tg-icon-time          { background-image: url("../Img/icons/time-16.png") }
+.tg-icon.tg-small.tg-icon-toggle        { background-image: url("../Img/icons/toggle-16.png") }
+.tg-icon.tg-small.tg-icon-true          { background-image: url("../Img/icons/tick-16.png") }
+.tg-icon.tg-small.tg-icon-unchecked     { background-image: url("../Img/icons/unchecked-16.png") }
+.tg-icon.tg-small.tg-icon-unsubscribe   { background-image: url("../Img/icons/unsubscribe-16.png") }
+.tg-icon.tg-small.tg-icon-up            { background-image: url("../Img/icons/up-16.png") }
+.tg-icon.tg-small.tg-icon-world         { background-image: url("../Img/icons/planet-16.png") }
+.tg-icon.tg-small.tg-icon-worldcomputer { background-image: url("../Img/icons/planetcomputer-16.png") }
+
+.tg-icon.tg-medium.tg-icon-alert     { background-image: url("../Img/icons/alert-26.png") }
+.tg-icon.tg-medium.tg-icon-off 		 { background-image: url("../Img/icons/off-26.png") }
+.tg-icon.tg-medium.tg-icon-off-alert { background-image: url("../Img/icons/off-alert-26.png") }
+.tg-icon.tg-medium.tg-icon-on        { background-image: url("../Img/icons/on-26.png") }
+.tg-icon.tg-medium.tg-icon-share     { background-image: url("../Img/icons/share-24.png") }
+.tg-icon.tg-medium.tg-icon-unshare   { background-image: url("../Img/icons/unshare-24.png")}
+
+.tg-icon:not(.tg-icon-lang).tg-big.tg-icon-user { background-image: url("../Img/icons/user-32.png") }
+.tg-icon:not(.tg-icon-lang).tg-big.tg-icon-user.tg-active { background-image: url("../Img/icons/user-32-check.png") }
+/* stylelint-enable */
+
+.tg-basketelement,
+.tg-registerelement {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.tg-basket-mode-quantity { width: 52px; }
+
+.tg-basket-mode-quantity > input,
+.tg-basket-mode-quantity > div {
+    display: block;
+    float: left;
+}
+
+/* stylelint-disable */
+/* Small icons */
+.tg-icon.tg-small.tg-icon-lang-de { background-image: url("../Img/flags/de.png") }
+.tg-icon.tg-small.tg-icon-lang-en { background-image: url("../Img/flags/en.png") }
+.tg-icon.tg-small.tg-icon-lang-es { background-image: url("../Img/flags/es.png") }
+.tg-icon.tg-small.tg-icon-lang-fr { background-image: url("../Img/flags/fr.png") }
+.tg-icon.tg-small.tg-icon-lang-it { background-image: url("../Img/flags/it.png") }
+.tg-icon.tg-small.tg-icon-lang-nl { background-image: url("../Img/flags/nl.png") }
+
+/* Medium icons */
+.tg-icon.tg-icon-lang-de { background-image: url("../Img/flags/24x24/de.png") }
+.tg-icon.tg-icon-lang-en { background-image: url("../Img/flags/24x24/en.png") }
+.tg-icon.tg-icon-lang-es { background-image: url("../Img/flags/24x24/es.png") }
+.tg-icon.tg-icon-lang-fr { background-image: url("../Img/flags/24x24/fr.png") }
+.tg-icon.tg-icon-lang-it { background-image: url("../Img/flags/24x24/it.png") }
+.tg-icon.tg-icon-lang-nl { background-image: url("../Img/flags/24x24/nl.png") }
+
+/* Large icons */
+.tg-icon.tg-big.tg-icon-lang-de { background-image: url("../Img/flags/32x32/de.png") }
+.tg-icon.tg-big.tg-icon-lang-en { background-image: url("../Img/flags/32x32/en.png") }
+.tg-icon.tg-big.tg-icon-lang-es { background-image: url("../Img/flags/32x32/es.png") }
+.tg-icon.tg-big.tg-icon-lang-fr { background-image: url("../Img/flags/32x32/fr.png") }
+.tg-icon.tg-big.tg-icon-lang-it { background-image: url("../Img/flags/32x32/it.png") }
+.tg-icon.tg-big.tg-icon-lang-nl { background-image: url("../Img/flags/32x32/nl.png") }
+/* stylelint-enable */
+
+
+.tg-icon-mandatory {
+    background: url("../Img/icons/mandatory-16.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 16px;
+    width: 8px;
+}
+
+
+
+/* --------------------------------------------------------------------------------
+   Components
+   -------------------------------------------------------------------------------- */
+
+/* == UI Sortable ==================== */
+.ui-sortable {
+    min-height: 30px !important;
+}
+
+/* == Breadcrumb ==================== */
+.tg-Breadcrumb {
+    list-style-type: none;
+}
+
+.tg-Breadcrumb-item {
+    display: inline;
+    margin-right: .5em;
+}
+
+/* == Chemin de fer ==================== */
+/* .tg-CheminFer {} */
+
+.tg-CheminFerStepContainer {
+    float: left;
+}
+
+/* .tg-CheminFerStep {} */
+
+/* .tg-CheminFerStep-label {} */
+
+/* .tg-CheminFerStep-number {} */
+
+
+/* == Changelang ==================== */
+.changelang {
+    list-style-type: none;
+}
+
+.changelang li {
+    display: inline;
+}
+
+.changelang li + li {
+    border-left: 1px solid #ccc;
+    margin-left: .5em;
+    padding-left: .5em;
+}
+
+.changelang .tg-active * {
+    cursor: default;
+}
+
+
+/**
+ * Basket
+ */
+
+.tg-BasketList {
+    border-bottom: 1px solid #999;
+    margin: 0 0 .75em;
+}
+
+.tg-BasketList-item {
+    margin-bottom: .75em;
+}
+
+
+
+/**
+ * Tooltips
+ */
+
+.tg-tooltip {
+    background: #fff;
+    font-size: .875em;
+    position: absolute;
+    top: 0;
+    transform: translateY(-100%); /* Tooltips are now on top of their related text */
+    z-index: 4;
+}
+
+
+
+/**
+ * Progress bar
+ */
+
+/* Container bar */
+.tg-Progress {
+    background: #e9ecef;
+    border-radius: .25rem;
+    font-size: .75rem;
+    height: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.tg-Progress-bar,
+.tg-Progress-value {
+    position: absolute;
+}
+
+/* Colored bar */
+.tg-Progress-bar {
+    background-color: royalblue;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    transition: width .25s linear;
+}
+
+/* Inifinite loading progressbar */
+.tg-Progress-bar:not([aria-valuenow]) {
+    animation: progress-bar-stripes 1s linear infinite;
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, .25) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, .25) 50%,
+            rgba(255, 255, 255, .25) 75%,
+            transparent 75%,
+            transparent
+        );
+    background-size: 2rem 2rem;
+    width: 100%;
+}
+
+.tg-Progress-value {
+    color: #fff;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+body:not(.ie9) .tg-Progress-value {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes progress-bar-stripes {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 2rem 0;
+    }
+}
+
+
+
+/**
+ * Intrinsic container
+ * @author Ben Marshall
+ * @see https://benmarshall.me/responsive-iframes/
+ */
+
+.tg-instrinsic-container {
+    height: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.tg-instrinsic-container-4x3 { padding-bottom: 75%; }
+.tg-instrinsic-container-16x9 { padding-bottom: 56.25%; }
+
+.tg-instrinsic-container > iframe {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+
+/**
+ * Cookie Banner
+ */
+
+.tg-CookieBanner {
+    background: #f7f7f7;
+    border-bottom: 1px solid #ccc;
+    color: #333d53;
+    font-size: .85em;
+    font-weight: 700;
+    left: 0;
+    padding: .5em;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    z-index: 1001;
+}
+
+.tg-CookieBanner-button,
+.tg-CookieBanner-link {
+    padding: .5em 1em;
+}
+
+.tg-CookieBanner-button {
+    border: 0;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .25);
+    color: #fff;
+    font: inherit;
+    margin-left: .5em;
+}
+
+.tg-CookieBanner-button--refuse {
+    background: #555;
+}
+
+.tg-CookieBanner-button:hover,
+.tg-CookieBanner-button:focus {
+    opacity: .9;
+}
+
+
+
+/**
+ * Buttons
+ */
+
+.tg-button {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: inherit;
+    display: inline-block;
+    line-height: normal;
+    padding: .375em; /* 6px */
+    text-decoration: none;
+}
+
+
+
+/**
+ * Button groups
+ */
+
+.tg-button-group {
+    border-radius: 3px;
+    display: inline-block;
+    vertical-align: middle;
+
+    /* border: 1px solid #ccc; */
+}
+
+.tg-button-group > .tg-button {
+    border-radius: 0;
+    background: transparent;
+    border: 1px solid #ccc;
+    float: left; /* Prevent whitespaces between buttons */
+    margin: 0;
+}
+
+.tg-button-group > .tg-button + .tg-button {
+    margin-left: -1px;
+
+    /* border-left: 1px solid #ccc; */
+}
+
+.tg-button > svg,
+.tg-button > svg + .tg-button-label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.tg-button > svg {
+    width: 1em;
+}
+
+.tg-button[data-action="add"] > svg { fill: #169fe6; }
+.tg-button[data-action="delete"] > svg { fill: #e74c3c; }
+.tg-button[data-action="edit"] > svg { fill: #169fe6; }
+.tg-button[data-action="save"] > svg { fill: #27ae60; }
+
+
+
+/* To remove for real use */
+
+.tg-button-group > .tg-button:hover,
+.tg-button-group > .tg-button:focus {
+    background-color: #eee;
+    color: #333;
+}
+
+.tg-button-group .tg-button-label {
+    color: #333;
+}
+
+/* end to remove */
+
+
+
+/**
+ * Powered By
+ */
+
+.tg-PoweredBy-icon {
+    display: block;
+    margin: auto;
+}
+
+.tg-PoweredBy-link {
+    display: block;
+    font-size: .7rem;
+    margin-top: -.25rem;
+    text-decoration: none;
+}
+
+.tg-PoweredBy--light .tg-PoweredBy-link {
+    color: #fff;
+}
+
+.tg-PoweredBy--standard .tg-PoweredBy-link {
+    color: #193f7e;
+}
+
+
+
+/**
+ * Support mode
+ */
+
+#tg_mode_support_info {
+    background-color: rgba(236, 200, 147, .9);
+    border-radius: 2px;
+    color: #253144;
+    cursor: default;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    padding: .25rem 1rem;
+    position: fixed;
+    right: 3rem;
+    top: 3rem;
+    user-select: none;
+    z-index: 1005;
+}
+
+
+
+/**
+ * Filter
+ */
+
+.tg-form-control-filter .tg-filter-clause {
+    border-left: 2px solid #ccc;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding-left: .5em;
+}
+
+.tg-form-control-filter .tg-filter-clause-first {
+    border-left: 0;
+    padding: 0;
+}
+
+.tg-form-control-filter .tg-filter-clause > li {
+    clear: both;
+}
+
+.tg-form-control-filter .tg-filter-clause > li:first-of-type > .tg-filter-clause-jonction {
+    visibility: hidden; /* display: none; */
+}
+
+.tg-form-control-filter .tg-filter-clause-jonction {
+    padding-right: .5em;
+}
+
+.tg-form-control-filter .tg-filter-clause-elem {
+    margin-bottom: .5em;
+    min-width: 400px;
+}
+
+.tg-filter-clause-elem-data .tg-form-control {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+}
+
+.tg-form-control-filter .tg-filter-clause-elem-action {
+    padding-left: .5em;
+}
+
+.tg-form-control-filter .tg-filter-sub {
+    clear: both;
+    padding-left: 5em;
+}
+
+.tg-filter-clause-elem.tg-active {
+    border: 1px solid #ccc;
+}
+
+.tg-filter-clause-elem.tg-active select,
+.tg-filter-clause-elem.tg-active .tg-input {
+    border: 0;
+}
+
+.tg-active .tg-filter-condition-operand,
+.tg-filter-clause-elem.tg-active .tg-filter-condition-operator {
+    border-bottom: 1px solid #ccc;
+}
+
+.tg-active .tg-filter-condition-operand {
+    border-top: 1px solid #ccc;
+}
+
+.tg-filter-clause-elem.tg-active .tg-filter-clause-elem-action {
+    float: right;
+}
+
+.tg-filter-clause-elem.tg-active .tg-filter-clause-elem-action .tg-button {
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.tg-filter-clause-elem.tg-active .tg-filter-clause-elem-action .tg-button:last-child {
+    border-right: 0;
+}
+
+.tg-form-control-filter [data-action="add"] {
+    font-size: .85em !important;
+}
+
+
+
+/**
+ * Choice button
+ */
+
+.tg-ChoiceButton {
+    cursor: pointer;
+    position: relative;
+
+    /* user-select: none; */
+}
+
+.tg-ChoiceButton input {
+    opacity: 0;
+    position: absolute;
+}
+
+.tg-ChoiceButton-action {
+    display: inline-block;
+    margin: .2em;
+}
+
+.tg-form-control-button-cols .tg-ChoiceButton-action {
+    display: block;
+}
+
+/* Create a focus ring for a11y */
+:focus + .tg-ChoiceButton-action {
+    outline: 1px solid rgb(59, 153, 252);
+}
+
+:disabled + .tg-ChoiceButton-action {
+    opacity: .6;
+    pointer-events: none;
+}

@@ -1,0 +1,151 @@
+/* --------------------------------------------------------------------------------
+   Général
+   -------------------------------------------------------------------------------- */
+html { box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #fff;
+    font-size: 100%;
+    line-height: 1.5;
+}
+
+
+/* Afficher clairement qu'il y a un intitulé pour l'abbréviation lorsqu'elle est renseignée */
+abbr[title] {
+    cursor: help;
+}
+
+
+/* Empêche les débordements d'images */
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+
+/**
+ * 1. Style `hidden` attribute (required for not so old browsers)
+ * 2. `tg-hidden` utility class for backward compatibility
+ */
+
+[hidden], /* 1 */
+.tg-hidden, /* 2 */
+.tg-hidden-ifnotadmin {
+    display: none !important;
+}
+
+/* Suppression des « helpers » IE sur les champs de formulaire */
+::-ms-clear {
+    display: none; /* /!\ ne rien factoriser avec cette règle ! */
+}
+
+
+/* --------------------------------------------------------------------------------
+   Typographie
+   -------------------------------------------------------------------------------- */
+/* h1,
+.tg-h1-like {}
+
+h2,
+.tg-h2-like {}
+
+h3,
+.tg-h3-like {}
+
+h4,
+.tg-h4-like {}
+
+h5,
+.tg-h5-like {}
+
+h6,
+.tg-h6-like {} */
+
+
+
+/* --------------------------------------------------------------------------------
+   Tableaux
+   -------------------------------------------------------------------------------- */
+table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+}
+
+
+
+/* --------------------------------------------------------------------------------
+   Formulaires
+   -------------------------------------------------------------------------------- */
+/* -- Général ----- */
+.tg-input,
+select,
+textarea {
+    max-width: 100%; /* Empêche les débordements, notamment lié au redimensionnement des <textarea> */
+    width: 100%;
+}
+
+/* Rétablissement des largeurs automatiques */
+/* .tg-input,
+.tg-button,
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+}
+TODO Vérifier l'utilité de cette règle */
+
+legend {
+    max-width: 100%; /* Empêche les débordements sur IE si trop long */
+}
+
+fieldset {
+    margin: 0 0 1.5em;
+}
+
+/* -- Uniformisation des selects avec les combocheck ----- */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /*background: url("../Img/icons/combo-16.png") no-repeat 98% 50%;*/
+    display: block;
+    padding-right: 1.5em !important;
+}
+
+/* On ne veut pas d'image pour les champs multiples */
+select[multiple] {
+    background: none;
+}
+
+/* IE10 */
+select::-ms-expand {
+    display: none;
+}
+
+/* Champs désactivés */
+[disabled],
+.tg-disabled {
+    opacity: .6;
+    pointer-events: none;
+}
+
+/* -- Champs fichiers ----- */
+
+[type="file"] {
+    cursor: pointer;
+}
+
+/* Chrome file input buttons don't inherit cursor style */
+[type="file"]::-webkit-file-upload-button {
+    cursor: pointer;
+}
